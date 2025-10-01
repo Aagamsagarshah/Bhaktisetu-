@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-key="brand">BhaktiSetu - Front Page</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header Section with Video -->
+  <header class="hero">
+    <!-- Background Video -->
+    <video autoplay muted loop class="hero-video">
+      <source src="vidio1.mp4" type="video/mp4">
+      <span data-key="no_video">Your browser does not support HTML5 video.</span>
+    </video>
+
+   <nav class="navbar">
+    <!-- Logo Image -->
+    <img src="logo1.png" alt="Temple Logo" class="logo-img">
+
+    <!-- Brand Name -->
+    <div class="logo" data-key="brand">BhaktiSetu</div>
+
+    <ul class="nav-links">
+        <li><a href="index.html" data-key="footer_menu0">Home</a></li>
+        <li><a href="about.html" data-key="menu_about">About</a></li>
+        <li><a href="Pilgrimage.html" data-key="menu_pilgrimage">Pilgrimage</a></li>
+        <li><a href="contact.html" data-key="menu_contact">Contact</a></li>
+    </ul>
+
+    <!-- Language Selector -->
+    <select id="language">
+        <option value="en">English</option>
+        <option value="hi">हिन्दी</option>
+        <option value="mr">मराठी</option>
+        <option value="gu">ગુજરાતી</option>
+    </select>
+</nav>
+
+    <!-- Script -->
+    <script>
+      const aboutBtn = document.getElementById('aboutBtn');
+      const aboutDropdown = document.getElementById('aboutDropdown');
+
+      aboutBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        aboutDropdown.style.display = aboutDropdown.style.display === 'block' ? 'none' : 'block';
+      });
+
+      // Close dropdown when clicked outside
+      window.addEventListener('click', (e) => {
+        if (!aboutBtn.contains(e.target) && !aboutDropdown.contains(e.target)) {
+          aboutDropdown.style.display = 'none';
+        }
+      });
+    </script>
+
+    <!-- Hero Text -->
+    <div class="hero-text">
+      <h1 data-key="discover_title">Discover Spirituality</h1>
+      <p data-key="discover_sub1">Explore the famous temples of India</p>
+      <a href="#gallery" class="btn" data-key="discover_sub2">Explore Temples and Book slot</a>
+    </div>
+  </header>
+
+  <!-- Temple Gallery Section -->
+  <section class="gallery" id="gallery">
+    <h2 data-key="gallery_title">Famous Temples Visit</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <a href="somnathtemple2.html">
+          <img src="somnath1.jpeg" alt="Somnath Temple">
+          <div class="overlay" data-key="temple_somnath">Somnath temple</div>
+        </a>
+      </div>
+      <div class="gallery-item">
+        <a href="dwarkatemple.html">
+          <img src="dwarka2.jpg" alt="Dwarka Temple">
+          <div class="overlay" data-key="temple_dwarka">Dwarka Temple</div>
+        </a>
+      </div>
+      <div class="gallery-item">
+        <a href="ambajitemple.html">
+          <img src="Ambaji3.jpg" alt="Ambaji Temple">
+          <div class="overlay" data-key="temple_ambaji">Ambaji Temple</div>
+        </a>
+      </div>
+      <div class="gallery-item">
+        <a href="pawagadhtemple.html">
+          <img src="pawagad4.jpg" alt="Pawagadh Temple">
+          <div class="overlay" data-key="temple_pawagadh">Pawagadh Temple</div>
+        </a>
+      </div>
+      <div class="gallery-item">
+        <a href="palitanatemple.html">
+          <img src="palitana5.jpg" alt="Palitana Temple">
+          <div class="overlay" data-key="temple_palitana">Palitana Temple</div>
+        </a>
+      </div>
+      <div class="gallery-item">
+        <a href="sidhivinayaktemple.html">
+          <img src="sidhivinayak6.jpg" alt="Sidhivinayak Temple">
+          <div class="overlay" data-key="temple_sidhivinayak">Sidhivinayak Temple</div>
+        </a>
+      </div>
+      <div class="gallery-item">
+        <a href="Sant Gajanan Maharaj Temple.html">
+          <img src="shantgajanan7.jpg" alt="Gajanan Maharaj Temple">
+          <div class="overlay" data-key="temple_gajanan">Gajanan Maharaj Temple</div>
+        </a>
+      </div>
+      <div class="gallery-item">
+        <a href="rameswaramtemple.html">
+          <img src="rameswaram.jpg" alt="Rameshwaram Temple">
+          <div class="overlay" data-key="temple_rameshwaram">Rameshwaram Temple</div>
+        </a>
+      </div>
+      <div style="text-align: left; margin-top: 10px; margin-right: 20px;">
+        <button onclick="window.location.href='All temple.html'"
+                style="padding:10px 20px; background-color:#ff6600; color:white; border:none; border-radius:5px; cursor:pointer;"
+                data-key="view_all">View All Temples</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Slider Section -->
+  <section class="slider">
+    <h2 data-key="featured_title">Featured Temples</h2>
+    <div class="slider-container">
+      <div class="slide active">
+        <img src="Kashi-Vishwanath1.1.jpg" alt="Featured Temple 1">
+        <div class="slide-text" data-key="temple_somnath">Somnath temple</div>
+      </div>
+      <div class="slide">
+        <img src="jagannath2.jpg" alt="Featured Temple 2">
+        <div class="slide-text" data-key="temple_dwarka">Dwarka Temple</div>
+      </div>
+      <div class="slide">
+        <img src="minakshitemple3.jpg" alt="Featured Temple 3">
+        <div class="slide-text" data-key="temple_ambaji">Ambaji Temple</div>
+      </div>
+      <div class="slide">
+        <img src="goldentemple4.jpg" alt="Featured Temple 4">
+        <div class="slide-text" data-key="temple_pawagadh">Pawagadh Temple</div>
+      </div>
+      <div class="slide">
+        <img src="bihadeshwaral5.jpg" alt="Featured Temple 5">
+        <div class="slide-text" data-key="temple_palitana">Palitana Temple</div>
+      </div>
+      <div class="slide">
+        <img src="konaraktemple6.jpg" alt="Featured Temple 6">
+        <div class="slide-text" data-key="temple_sidhivinayak">Sidhivinayak Temple</div>
+      </div>
+      <div class="slide">
+        <img src="akshardham7.jpg" alt="Featured Temple 7">
+        <div class="slide-text" data-key="temple_gajanan">Gajanan Maharaj Temple</div>
+      </div>
+      <div class="slide">
+        <img src="akshardham7.jpg" alt="Featured Temple 8">
+        <div class="slide-text" data-key="temple_rameshwaram">Rameshwaram Temple</div>
+      </div>
+      <button class="prev">&#10094;</button>
+      <button class="next">&#10095;</button>
+    </div>
+  </section>
+<button class="chat-toggle" id="toggleBtn">💬</button>
+
+<div class="chat-container" id="chatBox" role="dialog" aria-label="Mini chat">
+  <div class="chat-header">Mini Search Chat</div>
+  <div class="chat-messages" id="messages"></div>
+
+  <div class="chat-input">
+    <input id="input" placeholder="Ask about something " />
+    <button id="send">Send</button>
+  </div>
+  <div style="padding:8px 12px" class="smallmuted"></div>
+</div>
+  <!-- Chat Window -->
+  <div class="chat-container" id="chatContainer">
+    <div class="chat-header">Avatar</div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Type a message...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <section class="about">
+    <h2 data-key="about_title">About BhaktiSetu</h2>
+    <p data-key="about_desc">BhaktiSetu helps pilgrims explore famous temples in India with detailed guides and rich visuals. Plan your spiritual journey with ease.</p>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="footer-container">
+      <!-- Logo + Description -->
+      <div class="footer-section logo-desc">
+        <img src="logo.png" alt="Our Temples Logo">
+        <h2 data-key="our_temples">Our Temples</h2>
+        <p data-key="our_temples_sub">Discover amazing temples everywhere you go</p>
+      </div>
+
+      <!-- Our Temples Links -->
+      <div class="footer-section links">
+        <h3 data-key="our_temples">Our Temples</h3>
+        <ul>
+          <li><a href="#" data-key="footer_menu0">Home</a></li>
+          <li><a href="#" data-key="footer_menu1">About Us</a></li>
+          <li><a href="#" data-key="footer_menu2">Blog</a></li>
+          <li><a href="#" data-key="footer_menu3">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Other Pages Links -->
+      <div class="footer-section links">
+        <h3 data-key="other_pages">Other Pages</h3>
+        <ul>
+          <li><a href="#" data-key="terms">Terms & Conditions</a></li>
+          <li><a href="#" data-key="privacy">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact + Social Icons -->
+      <div class="footer-section contact">
+        <h3 data-key="menu_contact">Contact Us</h3>
+        <p data-key="contact_email"><strong>Email:</strong> info@ourtemples.info</p>
+        <p data-key="contact_phone"><strong>Phone:</strong> +91 1234567890</p>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer-bottom">
+      <p data-key="footer_copy">&copy; 2025 : Our Temples : info@ourtemples.info</p>
+    </div>
+  </footer>
+    
+
+
+    <script src="script.js"></script>
+       <script>
+  // Translation object
+  const translations = {
+    en: {
+      brand: "BhaktiSetu",
+      menu_about1: "Home",
+      menu_about: "About",
+      menu_mission: "Our Mission",
+      menu_history: "History",
+      menu_team: "Team",
+      menu_events: "Events",
+      menu_faq: "FAQ",
+      menu_pilgrimage: "Pilgrimage",
+      menu_contact: "Contact",
+      discover_title: "Discover Spirituality",
+      discover_sub1: "Explore the famous temples of India",
+      discover_sub2: "Explore Temples and Book slot",
+      gallery_title: "Famous Temples Visit",
+      temple_somnath: "Somnath Temple",
+      temple_dwarka: "Dwarka Temple",
+      temple_ambaji: "Ambaji Temple",
+      temple_pawagadh: "Pawagadh Temple",
+      temple_palitana: "Palitana Temple",
+      temple_sidhivinayak: "Sidhivinayak Temple",
+      temple_gajanan: "Gajanan Maharaj Temple",
+      temple_rameshwaram: "Rameshwaram Temple",
+      view_all: "View All Temples",
+      featured_title: "Featured Temples",
+      about_title: "About BhaktiSetu",
+      about_desc: "BhaktiSetu helps pilgrims explore famous temples in India with detailed guides and rich visuals. Plan your spiritual journey with ease.",
+      our_temples: "Our Temples",
+      our_temples_sub: "Discover amazing temples everywhere you go",
+      other_pages: "Other Pages",
+      terms: "Terms & Conditions",
+      privacy: "Privacy Policy",
+      contact_email: "Email: info@ourtemples.info",
+      contact_phone: "Phone: +91 1234567890",
+      footer_copy: "© 2025 : Our Temples : info@ourtemples.info",
+      no_video: "Your browser does not support HTML5 video."
+    },
+    hi: {
+      brand: "भक्ति सेतु",
+       menu_about1: "होम",
+      menu_about: "हमारे बारे में +",
+      menu_mission: "हमारा उद्देश्य",
+      menu_history: "इतिहास",
+      menu_team: "टीम",
+      menu_events: "कार्यक्रम",
+      menu_faq: "प्रश्नोत्तर",
+      menu_pilgrimage: "तीर्थयात्रा",
+      menu_contact: "संपर्क",
+      discover_title: "आध्यात्मिकता की खोज करें",
+      discover_sub1: "भारत के प्रसिद्ध मंदिरों का अन्वेषण करें",
+      discover_sub2: "मंदिर देखें और स्लॉट बुक करें",
+      gallery_title: "प्रसिद्ध मंदिरों की यात्रा",
+      temple_somnath: "सोमनाथ मंदिर",
+      temple_dwarka: "द्वारका मंदिर",
+      temple_ambaji: "अम्बाजी मंदिर",
+      temple_pawagadh: "पावागढ़ मंदिर",
+      temple_palitana: "पालिताना मंदिर",
+      temple_sidhivinayak: "सिद्धिविनायक मंदिर",
+      temple_gajanan: "गजानन महाराज मंदिर",
+      temple_rameshwaram: "रामेश्वरम मंदिर",
+      view_all: "सभी मंदिर देखें",
+      featured_title: "विशेष मंदिर",
+      about_title: "भक्ति सेतु के बारे में",
+      about_desc: "भक्ति सेतु तीर्थयात्रियों को भारत के प्रसिद्ध मंदिरों की खोज में मदद करता है।",
+      our_temples: "हमारे मंदिर",
+      our_temples_sub: "जहां भी जाएँ, अद्भुत मंदिर खोजें",
+      other_pages: "अन्य पृष्ठ",
+      terms: "नियम और शर्तें",
+      privacy: "गोपनीयता नीति",
+      contact_email: "ईमेल: info@ourtemples.info",
+      contact_phone: "फोन: +91 1234567890",
+      footer_copy: "© 2025 : हमारे मंदिर : info@ourtemples.info",
+      no_video: "आपका ब्राउज़र HTML5 वीडियो को सपोर्ट नहीं करता।"
+    },
+    mr: {
+      brand: "भक्तिसेतू",
+       menu_about1: "मुखपृष्ठ",
+      menu_about: "आमच्याबद्दल +",
+      menu_mission: "आमचे उद्दिष्ट",
+      menu_history: "इतिहास",
+      menu_team: "टीम",
+      menu_events: "कार्यक्रम",
+      menu_faq: "सामान्य प्रश्न",
+      menu_pilgrimage: "तीर्थयात्रा",
+      menu_contact: "संपर्क",
+      discover_title: "आध्यात्मिकतेची शोधा",
+      discover_sub1: "भारतातील प्रसिद्ध मंदिरांचा अन्वेषण करा",
+      discover_sub2: "मंदिरे पहा आणि स्लॉट बुक करा",
+      gallery_title: "प्रसिद्ध मंदिरांची भेट",
+      temple_somnath: "सोमनाथ मंदिर",
+      temple_dwarka: "द्वारका मंदिर",
+      temple_ambaji: "अम्बाजी मंदिर",
+      temple_pawagadh: "पावागढ़ मंदिर",
+      temple_palitana: "पालिताना मंदिर",
+      temple_sidhivinayak: "सिद्धिविनायक मंदिर",
+      temple_gajanan: "गजानन महाराज मंदिर",
+      temple_rameshwaram: "रामेश्वरम मंदिर",
+      view_all: "सर्व मंदिर पहा",
+      featured_title: "वैशिष्ट्यपूर्ण मंदिर",
+      about_title: "भक्तिसेतू बद्दल",
+      about_desc: "भक्तिसेतू तीर्थयात्र्यांना भारतातील प्रसिद्ध मंदिरांचा शोध घेण्यात मदत करते.",
+      our_temples: "आमची मंदिरे",
+      our_temples_sub: "जिथेही जा, अद्भुत मंदिरे शोधा",
+      other_pages: "इतर पृष्ठे",
+      terms: "अटी व शर्ती",
+      privacy: "गोपनीयता धोरण",
+      contact_email: "ईमेल: info@ourtemples.info",
+      contact_phone: "फोन: +91 1234567890",
+      footer_copy: "© 2025 : आमची मंदिरे : info@ourtemples.info",
+      no_video: "आपला ब्राउझर HTML5 व्हिडिओला समर्थन करत नाही."
+    },
+    gu: {
+      brand: "ભક્તિ સેતુ",
+       menu_about1: "હોમ",
+      menu_about: "અમારા વિશે +",
+      menu_mission: "અમારો ધ્યેય",
+      menu_history: "ઇતિહાસ",
+      menu_team: "ટીમ",
+      menu_events: "પ્રોગ્રામ્સ",
+      menu_faq: "પ્રશ્નોત્તરી",
+      menu_pilgrimage: "તિર્થયાત્રા",
+      menu_contact: "સંપર્ક",
+      discover_title: "આત્મિકતાની શોધ કરો",
+      discover_sub1: "ભારતના પ્રસિદ્ધ મંદિરોની શોધ કરો",
+      discover_sub2: "મંદિરો જુઓ અને સ્લોટ બુક કરો",
+      gallery_title: "પ્રખ્યાત મંદિર મુલાકાત",
+      temple_somnath: "સોમનાથ મંદિર",
+      temple_dwarka: "દ્વારકા મંદિર",
+      temple_ambaji: "અમ્બાજી મંદિર",
+      temple_pawagadh: "પાવાગઢ મંદિર",
+      temple_palitana: "પાલિતાના મંદિર",
+      temple_sidhivinayak: "સિદ્ધિવિનાયક મંદિર",
+      temple_gajanan: "ગજનાન મહારાજ મંદિર",
+      temple_rameshwaram: "રામેશ્વરમ મંદિર",
+      view_all: "બધા મંદિરો જુઓ",
+      featured_title: "વિશિષ્ટ મંદિરો",
+      about_title: "ભક્તિ સેતુ વિશે",
+      about_desc: "ભક્તિ સેતુ યાત્રીઓને ભારતના પ્રસિદ્ધ મંદિરો શોધવામાં મદદ કરે છે.",
+      our_temples: "અમારા મંદિર",
+      our_temples_sub: "જ્યાં પણ જાઓ, અદ્ભુત મંદિર શોધો",
+      other_pages: "અન્ય પૃષ્ઠો",
+      terms: "નિયમો અને શરતો",
+      privacy: "ગોપનીયતા નીતિ",
+      contact_email: "ઈમેલ: info@ourtemples.info",
+      contact_phone: "ફોન: +91 1234567890",
+      footer_copy: "© 2025 : અમારા મંદિર : info@ourtemples.info",
+      no_video: "તમારો બ્રાઉઝર HTML5 વિડિયો સપોર્ટ કરતો નથી."
+    }
+  };
+
+  // Function to update all text based on selected language
+  function updateLanguage(lang) {
+    document.querySelectorAll("[data-key]").forEach(el => {
+      const key = el.getAttribute("data-key");
+      if(translations[lang][key]) {
+        el.innerText = translations[lang][key];
+      }
+    });
+  }
+
+  <!-- Add this inside your script tag -->
+function append(text, cls='bot') {
+  const d = document.createElement('div');
+  d.className = 'msg ' + cls;
+  d.textContent = text;
+  messages.appendChild(d);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+async function sendMessage() {
+  const q = input.value.trim();
+  if(!q) return;
+  append(q, 'user');
+  input.value = '';
+  append('Searching the web...', 'bot');
+
+  try {
+    const res = await fetch('/api/search', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ query: q })
+    });
+
+    // Remove last 'Searching...' bubble
+    const last = messages.querySelectorAll('.msg.bot');
+    if(last.length) last[last.length-1].remove();
+
+    if(res.ok){
+      const data = await res.json();
+      append(data.answer, 'bot');
+    } else {
+      const data = await res.json().catch(()=>({error:'Unknown server error'}));
+      append('Server error: ' + (data.error||'Something went wrong'), 'bot-error');
+    }
+
+  } catch(err){
+    console.error(err);
+    append('Network error: could not reach server', 'bot-error');
+  }
+}
+
+
+  // Language selector event
+  document.getElementById("language").addEventListener("change", (e) => {
+    updateLanguage(e.target.value);
+  });
+
+  // Initialize default language
+  updateLanguage("en");
+
+  const chatContainer = document.getElementById("chatContainer");
+    const chatMessages = document.getElementById("chatMessages");
+    const userInput = document.getElementById("userInput");
+
+    function toggleChat() {
+      chatContainer.style.display = chatContainer.style.display === "flex" ? "none" : "flex";
+    }
+
+    function sendMessage() {
+      const text = userInput.value.trim();
+      if (!text) return;
+
+      // User Message
+      const userMsg = document.createElement("div");
+      userMsg.className = "message user";
+      userMsg.textContent = text;
+      chatMessages.appendChild(userMsg);
+
+      userInput.value = "";
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      // Bot Reply
+      setTimeout(() => {
+        const botMsg = document.createElement("div");
+        botMsg.className = "message bot";
+        botMsg.textContent = getBotReply(text);
+        chatMessages.appendChild(botMsg);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }, 500);
+    }
+
+    function getBotReply(input) {
+      input = input.toLowerCase();
+      if (input.includes("hello")) return "Hi! How can I help you?";
+      if (input.includes("ai")) return "AI means Artificial Intelligence.";
+      if (input.includes("bye")) return "Goodbye 👋";
+      return "Interesting! Tell me more...";
+    }
+
+    userInput.addEventListener("keypress", function(e) {
+      if (e.key === "Enter") sendMessage();
+    });
+
+    const toggleBtn = document.getElementById('toggleBtn');
+const chatBox = document.getElementById('chatBox');
+const messages = document.getElementById('messages');
+const input = document.getElementById('input');
+const send = document.getElementById('send');
+
+toggleBtn.addEventListener('click', ()=> {
+  chatBox.style.display = chatBox.style.display === 'flex' ? 'none' : 'flex';
+});
+
+// append helper
+function append(text, cls='bot') {
+  const d = document.createElement('div');
+  d.className = 'msg ' + cls;
+  d.textContent = text;
+  messages.appendChild(d);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+// send message
+async function sendMessage() {
+  const q = input.value.trim();
+  if(!q) return;
+  append(q, 'user');
+  input.value = '';
+  append('Searching the web...', 'bot');
+
+  try {
+    const res = await fetch('/api/search', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ query: q })
+    });
+    const data = await res.json();
+    // remove last 'Searching...' bubble
+    const last = messages.querySelectorAll('.msg.bot');
+    if(last.length) last[last.length-1].remove();
+
+    if(res.ok) {
+      // Show the summarized text returned by server
+      append(data.answer, 'bot');
+
+      // Optionally show top sources (links)
+      if(data.sources && data.sources.length) {
+        data.sources.slice(0,3).forEach(s => {
+          const linkEl = document.createElement('div');
+          linkEl.className = 'msg bot';
+          linkEl.innerHTML = (s.title ? '<strong>'+escapeHtml(s.title)+'</strong><br/>' : '') +
+                             escapeHtml(s.snippet) + '<br/><a href="'+escapeHtml(s.link)+'" target="_blank" rel="noreferrer">Source</a>';
+          messages.appendChild(linkEl);
+        });
+        messages.scrollTop = messages.scrollHeight;
+      }
+    } else {
+      append('Error: ' + (data.error || 'Server failed to search'), 'bot');
+    }
+  } catch(err) {
+    append('Network error: could not reach server', 'bot');
+    console.error(err);
+  }
+}
+
+function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[c])); }
+
+send.addEventListener('click', sendMessage);
+input.addEventListener('keydown', (e)=>{ if(e.key==='Enter') sendMessage(); });
+
+ // simple CORS in server.js (during testing)
+const cors = require('cors');
+app.use(cors());
+
+async function sendMessage() {
+  const q = input.value.trim();
+  if(!q) return;
+  append(q,'user');
+  input.value='';
+  append('Thinking...', 'bot');
+
+  try {
+    const res = await fetch('/api/chat', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({message:q})
+    });
+    const data = await res.json();
+    const last = messages.querySelectorAll('.msg.bot');
+    if(last.length) last[last.length-1].remove();
+    append(data.reply, 'bot');
+  } catch(err){
+    append('Network error: could not reach server', 'bot-error');
+    console.error(err);
+  }
+}
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temple Slot Booking</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+  body{background:#f0f4fb;color:#222}
+  .container{max-width:1100px;margin:20px auto;padding:20px;background:#fff;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.1)}
+  h1{color:#0b3d91;margin-bottom:10px}
+  .section{margin-bottom:25px}
+  label{display:block;margin-bottom:6px;font-weight:600}
+  input, select, button{padding:10px;border-radius:6px;border:1px solid #ccc;margin-bottom:12px;width:100%;font-size:15px}
+  button{background:#0b62d6;color:#fff;border:none;cursor:pointer;transition:0.2s}
+  button:hover{background:#0849a3}
+  .calendar{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+  .calendar button{flex:1 1 calc(14% - 6px);padding:10px;font-size:14px;background:#e3ecfb;color:#0b62d6;border:none;border-radius:6px;cursor:pointer;transition:0.2s}
+  .calendar button.selected{background:#0b62d6;color:#fff}
+  .seats{margin-top:10px}
+  .seat-btn{display:inline-block;width:30px;height:30px;margin:3px;text-align:center;line-height:30px;border-radius:4px;border:1px solid #0b62d6;color:#0b62d6;cursor:pointer;transition:0.2s}
+  .seat-btn.booked{background:#0b62d6;color:#fff;cursor:not-allowed}
+  .seat-btn.selected{background:#0849a3;color:#fff}
+  .options{display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+  .options button{flex:1}
+  .summary{background:#f0f6ff;padding:12px;border-radius:8px;margin-top:12px}
+  .counter{font-weight:600;margin-bottom:6px;color:#0b3d91}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>Ambaji Temple Slot Booking</h1>
+
+<div class="section">
+<label for="date">Select Date:</label>
+<input type="month" id="monthPicker">
+<div class="calendar" id="calendar"></div>
+</div>
+
+<div class="section">
+<label>Select 2-Hour Slot (150 seats per slot):</label>
+<div class="options" id="slots">
+  <button data-slot="08:00-10:00">08:00-10:00</button>
+  <button data-slot="10:00-12:00">10:00-12:00</button>
+  <button data-slot="12:00-14:00">12:00-14:00</button>
+  <button data-slot="14:00-16:00">14:00-16:00</button>
+  <button data-slot="16:00-18:00">16:00-18:00</button>
+</div>
+</div>
+
+<div class="section">
+<label>Seats:</label>
+<div class="counter" id="seatCounter">Booked: 0 / Remaining: 150</div>
+<div class="seats" id="seatsContainer"></div>
+</div>
+
+<div class="section">
+<label>Parking Option:</label>
+<select id="parking">
+  <option value="0">No Parking</option>
+  <option value="50">Parking - ₹50</option>
+</select>
+</div>
+
+<div class="section">
+<label>User Type:</label>
+<div class="options">
+  <button id="regularBtn">Regular</button>
+  <button id="vipBtn">VIP (₹500)</button>
+</div>
+</div>
+
+<div class="section">
+  <a href="ambajiragistation.html">
+<button id="bookBtn">Book Now</button>
+<div class="summary" id="summary"></div>
+</a>
+</div>
+
+</div>
+
+<script>
+  const calendarDiv = document.getElementById('calendar');
+  const monthPicker = document.getElementById('monthPicker');
+  const slotsDiv = document.getElementById('slots');
+  const seatsContainer = document.getElementById('seatsContainer');
+  const parkingSelect = document.getElementById('parking');
+  const regularBtn = document.getElementById('regularBtn');
+  const vipBtn = document.getElementById('vipBtn');
+  const bookBtn = document.getElementById('bookBtn');
+  const summaryDiv = document.getElementById('summary');
+  const seatCounter = document.getElementById('seatCounter');
+
+  let selectedDate = null;
+  let selectedSlot = null;
+  let selectedSeats = [];
+  let userType = "Regular";
+  let totalSeats = 150;
+
+  // Data structure to store booked seats per slot+date
+  let bookedSeatsData = {}; // { '2025-09-23_08:00-10:00': [1,2,3] }
+
+  function updateCounter(){
+    if(!selectedDate || !selectedSlot){seatCounter.textContent=`Booked: 0 / Remaining: ${totalSeats}`; return;}
+    const key = selectedDate+"_"+selectedSlot;
+    const booked = bookedSeatsData[key] ? bookedSeatsData[key].length : 0;
+    seatCounter.textContent=`Booked: ${booked} / Remaining: ${totalSeats - booked}`;
+  }
+
+  function renderCalendar(year, month){
+    calendarDiv.innerHTML = "";
+    const firstDay = new Date(year, month,1).getDay();
+    const daysInMonth = new Date(year, month+1,0).getDate();
+
+    for(let i=0;i<firstDay;i++){
+      const empty = document.createElement('div');
+      empty.style.flex = "1 1 calc(14% - 6px)";
+      calendarDiv.appendChild(empty);
+    }
+
+    for(let d=1;d<=daysInMonth;d++){
+      const btn = document.createElement('button');
+      btn.textContent = d;
+      btn.addEventListener('click',()=>{
+        document.querySelectorAll('#calendar button').forEach(b=>b.classList.remove('selected'));
+        btn.classList.add('selected');
+        selectedDate = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+        updateCounter();
+        renderSeats();
+      });
+      calendarDiv.appendChild(btn);
+    }
+  }
+
+  monthPicker.addEventListener('change',()=>{
+    const [year,month] = monthPicker.value.split('-').map(Number);
+    renderCalendar(year,month-1);
+  });
+
+  slotsDiv.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      slotsDiv.querySelectorAll('button').forEach(b=>{b.style.background="#e3ecfb";b.style.color="#0b62d6";});
+      btn.style.background="#0b62d6"; btn.style.color="#fff";
+      selectedSlot = btn.dataset.slot;
+      updateCounter();
+      renderSeats();
+    });
+  });
+
+  function renderSeats(){
+    seatsContainer.innerHTML="";
+    if(!selectedDate || !selectedSlot) return;
+    const key = selectedDate+"_"+selectedSlot;
+    const bookedSeats = bookedSeatsData[key] || [];
+    for(let i=1;i<=totalSeats;i++){
+      const seatBtn = document.createElement('div');
+      seatBtn.textContent=i;
+      seatBtn.classList.add('seat-btn');
+      if(bookedSeats.includes(i)) seatBtn.classList.add('booked');
+      seatBtn.addEventListener('click',()=>{
+        if(seatBtn.classList.contains('booked')) return;
+        if(seatBtn.classList.contains('selected')){
+          seatBtn.classList.remove('selected');
+          selectedSeats = selectedSeats.filter(s=>s!==i);
+        } else {
+          seatBtn.classList.add('selected');
+          selectedSeats.push(i);
+        }
+      });
+      seatsContainer.appendChild(seatBtn);
+    }
+  }
+
+  regularBtn.addEventListener('click',()=>{userType="Regular"; alert("Regular booking selected")});
+  vipBtn.addEventListener('click',()=>{userType="VIP"; alert("VIP booking ₹500 selected")});
+
+  regularBtn.addEventListener('click',()=>{
+    if(!selectedDate){alert("Select a date"); return;}
+    if(!selectedSlot){alert("Select a slot"); return;}
+    if(selectedSeats.length===0){alert("Select seats"); return;}
+    const key = selectedDate+"_"+selectedSlot;
+    if(!bookedSeatsData[key]) bookedSeatsData[key]=[];
+    // Add selected seats to booked data
+    bookedSeatsData[key] = bookedSeatsData[key].concat(selectedSeats);
+    let parkingCost = Number(parkingSelect.value);
+    let vipCost = userType==="VIP"?500:0;
+    let total = parkingCost + vipCost;
+    summaryDiv.innerHTML=`<strong>Booking Summary:</strong><br>
+      Date: ${selectedDate}<br>
+      Slot: ${selectedSlot}<br>
+      Seats: ${selectedSeats.join(', ')}<br>
+      User Type: ${userType}<br>
+      Parking: ₹${parkingCost}<br>
+      VIP Charges: ₹${vipCost}<br>
+      <strong>Total Payable: ₹${total}</strong><br>
+      <em>Thank you! For VIP payment, please pay ₹${vipCost} at the temple office.</em>`;
+    selectedSeats=[];
+    renderSeats();
+    updateCounter();
+  });
+      
+      vipBtn.addEventListener('click',()=>{
+    if(!selectedDate){alert("Select a date"); return;}
+    if(!selectedSlot){alert("Select a slot"); return;}
+    if(selectedSeats.length===0){alert("Select seats"); return;}
+    const key = selectedDate+"_"+selectedSlot;
+    if(!bookedSeatsData[key]) bookedSeatsData[key]=[];
+    // Add selected seats to booked data
+    bookedSeatsData[key] = bookedSeatsData[key].concat(selectedSeats);
+    let parkingCost = Number(parkingSelect.value);
+    let vipCost = userType==="VIP"?500:0;
+    let total = parkingCost + vipCost;
+    summaryDiv.innerHTML=`<strong>Booking Summary:</strong><br>
+      Date: ${selectedDate}<br>
+      Slot: ${selectedSlot}<br>
+      Seats: ${selectedSeats.join(', ')}<br>
+      User Type: ${userType}<br>
+      Parking: ₹${parkingCost}<br>
+      VIP Charges: ₹${vipCost}<br>
+      <strong>Total Payable: ₹${total}</strong><br>
+      <em>Thank you! For VIP payment, please pay ₹${vipCost} at the temple office.</em>`;
+    selectedSeats=[];
+    renderSeats();
+    updateCounter();
+  }); 
+
+</script>
+
+</body>
+</html>

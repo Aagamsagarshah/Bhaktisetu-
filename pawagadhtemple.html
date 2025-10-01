@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pavagadh Temple — Visitor Guide</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;font-family:Inter, system-ui, -apple-system,'Segoe UI',Roboto,Arial;color:#222;background:linear-gradient(180deg,#fff,#f3f7fc)}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:1150px;margin:28px auto;padding:20px}
+    header{display:flex;align-items:center;gap:18px}
+    .logo{display:flex;flex-direction:column}
+    .logo h1{font-size:30px;color:#0b3d91}
+    .logo p{font-size:13px;color:#445}
+    nav{margin-left:auto;display:flex;gap:10px;align-items:center}
+    nav a{background:#0b62d6;color:#fff;padding:10px 14px;border-radius:8px}
+    nav a:hover{background:#0848a8}
+    .btn{display:inline-block;padding:10px 14px;border-radius:8px;background:#0b62d6;color:#fff;font-size:14px;border:none;cursor:pointer}
+    .btn:hover{background:#094a9e}
+    .hero{position:relative;margin-top:18px;border-radius:14px;overflow:hidden;box-shadow:0 8px 30px rgba(12,40,80,0.06)}
+    .hero .hero-image{height:380px;background-image:linear-gradient(to bottom,rgba(0,0,0,0.2),rgba(0,0,0,0.5)),url('https://upload.wikimedia.org/wikipedia/commons/4/40/Pavagadh_Hill_and_ropeway.jpg');background-size:cover;background-position:center;display:flex;align-items:flex-end;padding:28px;color:#fff}
+    .hero h2{margin:0;font-size:32px;letter-spacing:0.2px}
+    .hero .meta{font-size:14px;opacity:0.95}
+    .grid{display:grid;grid-template-columns:1fr 340px;gap:22px;margin-top:20px}
+    .card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 6px 20px rgba(11,30,70,0.06)}
+    .section-title{font-size:19px;color:#0b3d91;margin-bottom:10px}
+    .lead{color:#334;line-height:1.6;margin-bottom:12px}
+    .info-list{list-style:none;padding-left:0}
+    .info-list li{padding:8px 0;border-bottom:1px dashed #eee;color:#444}
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .gallery img{width:100%;height:110px;object-fit:cover;border-radius:8px}
+    .map{height:220px;border-radius:10px;background:linear-gradient(180deg,#e8eef9,#fff);display:flex;align-items:center;justify-content:center;color:#244;padding:12px;cursor:pointer;transition:background 0.3s}
+    .map:hover{background:#dce6f7}
+    .ticket-grid{display:flex;gap:10px;flex-wrap:wrap}
+    .ticket{flex:1 1 120px;background:#f7fbff;padding:10px;border-radius:8px;text-align:center}
+    .ticket small{display:block;color:#667}
+    .comments{margin-top:14px}
+    .comment{padding:10px;border-radius:8px;background:#eef5ff;margin-bottom:8px}
+    .comment strong{display:block}
+    footer{margin-top:26px;text-align:center;color:#667;font-size:13px}
+    @media(max-width:980px){.grid{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,1fr)}.hero .hero-image{height:260px}}
+    @media(max-width:520px){header{flex-direction:column;align-items:flex-start}.gallery{grid-template-columns:repeat(2,1fr)}}
+    .accordion{border-radius:8px;overflow:hidden;margin-top:14px}
+    .accordion button{width:100%;text-align:left;padding:12px;background:#fff;border:none;border-bottom:1px solid #eee;font-weight:600}
+    .accordion .panel{padding:12px;display:none;background:#eef5ff}
+    /* Camera Section */
+    #cameraCard video{border-radius:10px;width:100%;height:250px;background:#000;}
+    #cameraCard button{margin-top:10px;width:48%;}
+    .hero {
+      width: 100%;
+      height: 400px;
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("pawagad1.png") center/cover no-repeat; /* 👈 image */
+      z-index: 1;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5); /* 👈 dark layer for text visibility */
+      z-index: 2;
+    }
+
+    .hero-text {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      color: #fff;
+      z-index: 3; /* 👈 text sabse upar */
+    }
+
+    .hero-text h2 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .hero-text .meta {
+      font-size: 16px;
+      opacity: 0.9;
+    }
+
+     .card {
+      margin: 16px auto;
+      padding: 16px;
+      max-width: 700px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      text-align: center;
+    }
+    video, canvas {
+      width: 100%;
+      max-height: 300px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+    .btn {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      color: white;
+      background: #007bff;
+      margin: 5px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <h1>Pavagadh Temple</h1>
+        <p>Sacred Shakti Peeth • UNESCO Site</p>
+      </div>
+      <nav style="margin-left:auto;display:flex;gap:10px;align-items:center">
+        <a href="#about">About</a>
+        <a href="#history">History</a>
+        <a href="#visit" class="btn" >Plan Visit</a>
+        <a href="pawagadbookticket.html" class="btn" style="background:#2b9d58">Book Slot</a>
+      </nav>
+    </header>
+
+    </style>
+  <!-- TensorFlow.js + COCO-SSD -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+
+
+     <section class="hero card">
+    <div class="hero-text">
+      <h2>Pavagadh Temple — Abode of Goddess Kali</h2>
+      <div class="meta">Location: Panchmahal, Gujarat • Best time: Oct — Mar</div>
+    </div>
+  </section>
+
+    <main class="grid">
+      <article>
+        <!-- About, History, Gallery, etc. -->
+        <div class="card" id="about">
+          <h3 class="section-title">About Pavagadh</h3>
+          <p class="lead">Pavagadh Temple, dedicated to Goddess Kali, is perched atop a volcanic hill in Gujarat. It is one of the most significant Shakti Peethas, and part of the UNESCO World Heritage Site of Champaner-Pavagadh Archaeological Park.</p>
+        </div>
+
+        <div class="card">
+          <h3 class="section-title">History & Significance</h3>
+          <p class="lead">According to legends, this is where the right toe of Goddess Sati fell. The temple attracts thousands of devotees daily, and especially during Navratri when the celebrations light up the entire hill with devotion.</p>
+        </div>
+
+        <div class="card">
+          <h3 class="section-title">Gallery</h3>
+          <div class="gallery">
+            <img src="pawagad2.png" alt="Kalika Mata Temple">
+            <img src="pawagad3.png" alt="Ropeway View">
+            <img src="pawagad4.png" alt="Fort Gate">
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="section-title">Festivals & Rituals</h3>
+          <ul class="info-list">
+            <li>Navratri — Thousands of devotees & Garba celebrations</li>
+            <li>Chaitra Purnima — Special rituals and gatherings</li>
+            <li>Daily Aarti — Spiritual chants on the hilltop</li>
+            <li>Annual fair at Champaner</li>
+          </ul>
+        </div>
+
+        <div class="card accordion">
+          <button onclick="togglePanel(this)">Where is Pavagadh Temple?</button>
+          <div class="panel">Located near Champaner in Panchmahal district, Gujarat.</div>
+
+          <button onclick="togglePanel(this)">What is special about Pavagadh?</button>
+          <div class="panel">One of the Shakti Peethas, with a ropeway to reach the hilltop temple.</div>
+
+          <button onclick="togglePanel(this)">Best time to visit?</button>
+          <div class="panel">October to March, especially Navratri.</div>
+        </div>
+
+        <div class="card comments">
+          <h3 class="section-title">Visitor Experiences</h3>
+          <div class="comment"><strong>Anjali:</strong> "Ropeway ride is amazing! The darshan at the top feels divine."</div>
+          <div class="comment"><strong>Vivek:</strong> "The combination of heritage and spirituality here is incredible."</div>
+        </div>
+      </article>
+
+      <aside>
+        <div class="card" id="visit">
+          <h4 class="section-title">Plan your visit</h4>
+          <ul class="info-list">
+            <li><strong>Nearest city:</strong> Vadodara — 50 km</li>
+            <li><strong>Transport:</strong> Ropeway & steps available</li>
+            <li><strong>Facilities:</strong> Shops, prasad stalls, rest houses</li>
+            <li><strong>Tips:</strong> Carry water, wear good shoes</li>
+          </ul>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <div class="section-title">Location & map</div>
+          <div class="map" id="map">Click to open map</div>
+          <p style="font-size:13px;color:#556;margin-top:10px">Coordinates: 22.4950° N, 73.5273° E</p>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <div class="section-title">Contact & Donations</div>
+          <p style="color:#445">Temple Office: +91 265 123456<br>Email: info@pavagadhtemple.example</p>
+          <div style="margin-top:10px">
+            <button class="btn" onclick="openDonate()">Donate</button>
+          </div>
+        </div>
+
+         <!-- TensorFlow.js + COCO-SSD -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+</head>
+<body>
+  <!-- Camera / QR Scanner Section -->
+  <div class="card" id="cameraCard">
+    <h2>Live Temple Camera Access</h2>
+    <p style="font-size:13px;color:#556;margin-bottom:6px">
+      Use your device camera to count people inside temple:
+    </p>
+    <video id="camera" autoplay muted playsinline></video>
+    <canvas id="overlay"></canvas>
+    <div>
+      <button class="btn" onclick="startCamera()">Start Camera</button>
+      <button class="btn" style="background:#ff6347" onclick="stopCamera()">Stop Camera</button>
+    </div>
+    <h3 id="countDisplay">People Count: 0</h3>
+  </div>
+        
+      </aside>
+    </main>
+
+    <footer>
+      <p>© Shree Pawagadh Trust — Eternal Shrine of Lord Shiva</p>
+    </footer>
+  </div>
+
+  <script>
+    // Accordion toggle
+    function togglePanel(btn){
+      const panel = btn.nextElementSibling;
+      panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Map click
+    document.getElementById('map').addEventListener('click', () => {
+      window.open('https://www.google.com/maps/search/?api=1&query=20.8880,70.4012', '_blank');
+    });
+
+    // Donation prompt
+    function openDonate(){
+      const amount = prompt('Enter donation amount in ₹ (example: 500)');
+      if (!amount) return alert('Donation cancelled.');
+      const n = Number(amount.replace(/[^0-9.]/g,''));
+      if (!n || n <= 0) return alert('Enter a valid amount.');
+      alert('🙏 Thank you! You pledged ₹' + n + '. For official donations, please contact Shree Somnath Trust.');
+    }
+
+    // Comments system
+    function addComment(){
+      const text = document.getElementById('commentText').value.trim();
+      if(!text) return alert("Please write something.");
+      const div = document.createElement('div');
+      div.className = 'comment';
+      div.innerHTML = '<strong>Visitor</strong><p>'+text+'</p>';
+      document.getElementById('commentList').appendChild(div);
+      document.getElementById('commentText').value = '';
+    }
+
+    let video = document.getElementById("camera");
+    let canvas = document.getElementById("overlay");
+    let ctx = canvas.getContext("2d");
+    let stream = null;
+    let model = null;
+
+    // Load COCO-SSD model
+    cocoSsd.load().then(loadedModel => {
+      model = loadedModel;
+      console.log("Model loaded!");
+    });
+
+    async function startCamera() {
+      stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      video.srcObject = stream;
+
+      video.onloadedmetadata = () => {
+        video.play();
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        detectPeople();
+      };
+    }
+
+    function stopCamera() {
+      if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+      }
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      document.getElementById("countDisplay").innerText = "People Count: 0";
+    }
+
+    async function detectPeople() {
+      if (!model) return;
+
+      const predictions = await model.detect(video);
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      let personCount = 0;
+
+      predictions.forEach(prediction => {
+        if (prediction.class === "person" && prediction.score > 0.6) {
+          personCount++;
+          let [x, y, width, height] = prediction.bbox;
+          ctx.strokeStyle = "lime";
+          ctx.lineWidth = 2;
+          ctx.strokeRect(x, y, width, height);
+          ctx.fillStyle = "lime";
+          ctx.fillText("Person", x, y > 10 ? y - 5 : y + 15);
+        }
+      });
+
+      document.getElementById("countDisplay").innerText = "People Count: " + personCount;
+
+      requestAnimationFrame(detectPeople);
+    }
+  </script>
+</body>
+</html>

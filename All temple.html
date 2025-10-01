@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Temples</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .search-box {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .search-box input {
+      padding: 8px 12px;
+      width: 300px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    .temple-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+    .temple-card {
+      background-color: #fff;
+      padding: 15px 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      width: 200px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .temple-card button {
+      background-color: #ff6600;
+      border: none;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .temple-card button:hover {
+      background-color: #e05500;
+    }
+  </style>
+</head>
+<body>
+
+<h1>All Temples in India</h1>
+
+<div class="search-box">
+  <input type="text" id="searchInput" placeholder="Search for a temple..." onkeyup="filterTemples()">
+</div>
+
+<div class="temple-list" id="templeList">
+  <!-- JavaScript se fill hoga -->
+</div>
+
+<script>
+  const temples = [
+    "Somnath Temple (Gujarat)",
+    "Dwarkadhish Temple (Dwarka)",
+    "Kashi Vishwanath Temple (Varanasi)",
+    "Kedarnath Temple (Uttarakhand)",
+    "Badrinath Temple (Uttarakhand)",
+    "Shree Siddhivinayak Temple (Mumbai)",
+    "Vaishno Devi Temple (Jammu & Kashmir)",
+    "Golden Temple (Amritsar)",
+    "Rameshwaram Ramanathaswamy Temple (Tamil Nadu)",
+    "Jagannath Temple (Puri, Odisha)",
+    "Meenakshi Amman Temple (Madurai)",
+    "Tirupati Balaji Temple (Andhra Pradesh)",
+    "Shirdi Sai Baba Temple (Maharashtra)",
+    "Amarnath Cave Temple (Jammu & Kashmir)",
+    "Mahakaleshwar Jyotirlinga (Ujjain)",
+    "Trimbakeshwar Temple (Nashik)",
+    "Omkareshwar Temple (Madhya Pradesh)",
+    "Konark Sun Temple (Odisha)",
+    "Akshardham Temple (Delhi)",
+    "Kalighat Kali Temple (Kolkata)",
+    "Kamakhya Temple (Assam)",
+    "Banke Bihari Temple (Vrindavan)",
+    "ISKCON Temple (Bengaluru)",
+    "Lingaraj Temple (Bhubaneshwar)",
+    "Ranakpur Jain Temple (Rajasthan)",
+    "Palitana Temples (Gujarat)",
+    "Dilwara Temples (Mount Abu)",
+    "Someshwara Temple (Karnataka)",
+    "Chennakeshava Temple (Belur)",
+    "Sri Ranganathaswamy Temple (Srirangam)",
+    "Annamalaiyar Temple (Tiruvannamalai)",
+    "Padmanabhaswamy Temple (Kerala)",
+    "Gangaikonda Cholapuram Temple (Tamil Nadu)",
+    "Murudeshwar Temple (Karnataka)",
+    "Virupaksha Temple (Hampi)",
+    "Bhoganandishwara Temple (Nandi Hills)",
+    "Parli Vaijnath Temple (Maharashtra)",
+    "Grishneshwar Temple (Ellora)",
+    "Rajrappa Temple (Jharkhand)",
+    "Ambaji Temple (Gujarat)",
+    "Pavagadh Kalika Temple (Gujarat)",
+    "Shamalaji Temple (Gujarat)",
+    "Girnar Temples (Junagadh)",
+    "Modhera Sun Temple (Gujarat)",
+    "Tarakeshwar Temple (West Bengal)",
+    "Birla Mandir (Hyderabad)",
+    "Birla Mandir (Jaipur)",
+    "Birla Mandir (Delhi)",
+    "Lotus Temple (Delhi)",
+    "Hanuman Garhi (Ayodhya)",
+    "Ram Janmabhoomi Mandir (Ayodhya)",
+    "Kalaram Temple (Nashik)",
+    "Muktidham Temple (Nashik)",
+    "Alandi Temple (Maharashtra)",
+    "Dehu Temple (Maharashtra)",
+    "Jejuri Khandoba Temple (Maharashtra)",
+    "Tulja Bhavani Temple (Maharashtra)",
+    "Mahalaxmi Temple (Kolhapur)",
+    "Saptashrungi Temple (Vani, Maharashtra)",
+    "Renuka Devi Temple (Mahur, Maharashtra)",
+    "Aundha Nagnath Temple (Maharashtra)",
+    "Bhuleshwar Temple (Maharashtra)",
+    "Kunkeshwar Temple (Maharashtra)",
+    "Banashankari Amma Temple (Karnataka)",
+    "Mantralayam Raghavendra Swamy Temple (AP)",
+    "Ahobilam Temple (Andhra Pradesh)",
+    "Yadagirigutta Temple (Telangana)",
+    "Kanaka Durga Temple (Vijayawada)",
+    "Simhachalam Temple (Andhra Pradesh)",
+    "Srisailam Mallikarjuna Temple (Andhra Pradesh)",
+    "Sri Venkateswara Swamy Temple (Tirupati)",
+    "Udupi Krishna Temple (Karnataka)",
+    "Kateel Durgaparameshwari Temple (Karnataka)",
+    "Kollur Mookambika Temple (Karnataka)",
+    "Sringeri Sharada Peetham (Karnataka)",
+    "Dharmasthala Manjunatha Temple (Karnataka)",
+    "Subramanya Swamy Temple (Kukke, Karnataka)",
+    "Banashankari Temple (Badami)",
+    "Horanadu Annapoorneshwari Temple (Karnataka)",
+    "Kudalasangama Temple (Karnataka)",
+    "Basar Saraswathi Temple (Telangana)",
+    "Sammakka Sarakka Temple (Telangana)",
+    "Alampur Jogulamba Temple (Telangana)",
+    "Chilkur Balaji Temple (Hyderabad)",
+    "Jagatpita Brahma Mandir (Pushkar, Rajasthan)",
+    "Karni Mata Temple (Deshnoke, Rajasthan)",
+    "Eklingji Temple (Udaipur, Rajasthan)",
+    "Khatu Shyam Temple (Rajasthan)",
+    "Salasar Balaji Temple (Rajasthan)"
+    // ---- Is array ko aap aur temples add karke 600+ bana sakte ho ----
+  ];
+
+  const templeListDiv = document.getElementById('templeList');
+
+  function renderTemples(list) {
+    templeListDiv.innerHTML = '';
+    list.forEach(temple => {
+      const card = document.createElement('div');
+      card.className = 'temple-card';
+
+      const name = document.createElement('span');
+      name.textContent = temple;
+
+      const button = document.createElement('button');
+      button.textContent = 'Details';
+      button.onclick = () => alert('You clicked ' + temple);
+
+      card.appendChild(name);
+      card.appendChild(button);
+      templeListDiv.appendChild(card);
+    });
+  }
+
+  // Initial render
+  renderTemples(temples);
+
+  // Search/filter function
+  function filterTemples() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    const filtered = temples.filter(t => t.toLowerCase().includes(query));
+    renderTemples(filtered);
+  }
+</script>
+
+</body>
+</html>

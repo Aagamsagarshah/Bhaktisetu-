@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Drarka Temple — Visitor Guide</title>
+  <style>
+    /* ---------- Reset & base ---------- */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:#222;background:linear-gradient(180deg,#fff,#f6f8fb)}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* ---------- Layout ---------- */
+    .container{max-width:1100px;margin:28px auto;padding:20px}
+    header{display:flex;align-items:center;gap:18px}
+    .logo{display:flex;flex-direction:column}
+    .logo h1{font-size:28px;color:#0b3d91}
+    .logo p{font-size:13px;color:#556}
+
+       nav{margin-left:auto;display:flex;gap:10px;align-items:center}
+    nav a{background:#0b62d6;color:#fff;padding:10px 14px;border-radius:8px}
+    nav a:hover{background:#0848a8}
+    /* ---------- Hero ---------- */
+    .hero{position:relative;margin-top:18px;border-radius:14px;overflow:hidden;box-shadow:0 8px 30px rgba(12,40,80,0.06)}
+    .hero .hero-image{height:360px;background-image:linear-gradient(to bottom,rgba(0,0,0,0.18),rgba(0,0,0,0.38)), url('https://images.unsplash.com/photo-1504198453319-5ce911bafcde?auto=format&fit=crop&w=1400&q=80');background-size:cover;background-position:center;display:flex;align-items:flex-end;padding:28px;color:#fff}
+    .hero h2{margin:0;font-size:30px;letter-spacing:0.2px}
+    .hero .meta{font-size:14px;opacity:0.95}
+
+    /* ---------- Main grid ---------- */
+    .grid{display:grid;grid-template-columns:1fr 340px;gap:22px;margin-top:20px}
+    .card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 6px 20px rgba(11,30,70,0.04)}
+
+    /* ---------- About & details ---------- */
+    .section-title{font-size:18px;color:#0b3d91;margin-bottom:10px}
+    .lead{color:#334;line-height:1.6;margin-bottom:12px}
+    .info-list{list-style:none;padding-left:0}
+    .info-list li{padding:8px 0;border-bottom:1px dashed #eee;color:#444}
+
+    /* ---------- Gallery ---------- */
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .gallery img{width:100%;height:110px;object-fit:cover;border-radius:8px}
+
+    /* ---------- Map placeholder ---------- */
+    .map{height:220px;border-radius:10px;background:linear-gradient(180deg,#e8eef9,#fff);display:flex;align-items:center;justify-content:center;color:#244;padding:12px}
+
+    /* ---------- Schedule and Tickets ---------- */
+    .ticket-grid{display:flex;gap:10px;flex-wrap:wrap}
+    .ticket{flex:1 1 120px;background:#f7fbff;padding:10px;border-radius:8px;text-align:center}
+    .ticket small{display:block;color:#667}
+    .btn{display:inline-block;padding:10px 14px;border-radius:8px;background:#0b62d6;color:#fff;border:none;cursor:pointer}
+
+    /* ---------- Comments ---------- */
+    .comments{margin-top:14px}
+    .comment{padding:10px;border-radius:8px;background:#fbfdff;margin-bottom:8px}
+    .comment strong{display:block}
+
+    /* ---------- Footer ---------- */
+    footer{margin-top:26px;text-align:center;color:#667;font-size:13px}
+
+    /* ---------- Responsive ---------- */
+    @media (max-width:980px){
+      .grid{grid-template-columns:1fr}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+      .hero .hero-image{height:260px}
+    }
+
+    @media (max-width:520px){
+      header{flex-direction:column;align-items:flex-start}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+    }
+
+    /* ---------- Small interactive styles ---------- */
+    .accordion{border-radius:8px;overflow:hidden}
+    .accordion button{width:100%;text-align:left;padding:12px;background:#fff;border:none;border-bottom:1px solid #eee;font-weight:600}
+    .accordion .panel{padding:12px;display:none;background:#fbfdff}
+     
+    .hero {
+      width: 100%;
+      height: 400px;
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("palitana1.png") center/cover no-repeat; /* 👈 image */
+      z-index: 1;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5); /* 👈 dark layer for text visibility */
+      z-index: 2;
+    }
+
+    .hero-text {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      color: #fff;
+      z-index: 3; /* 👈 text sabse upar */
+    }
+
+    .hero-text h2 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .hero-text .meta {
+      font-size: 16px;
+      opacity: 0.9;
+    }
+
+     .card {
+      margin: 16px auto;
+      padding: 16px;
+      max-width: 700px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      text-align: center;
+    }
+    video, canvas {
+      width: 100%;
+      max-height: 300px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+    .btn {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      color: white;
+      background: #007bff;
+      margin: 5px;
+    }
+
+  </style>
+
+   <!-- TensorFlow.js + COCO-SSD -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <h1>PalitanaTemple</h1>
+        <p>Heritage, Harmony & Pilgrimage</p>
+      </div>
+      <nav style="margin-left:auto;display:flex;gap:10px;align-items:center">
+        <a href="#about">About</a>
+        <a href="#history">History</a>
+        <a href="#visit" >Plan Visit</a>
+        <a href="palitanabookticket.html" class="btn" style="background:#2b9d58">Book Slot</a>
+      </nav>
+    </header>
+
+     <section class="hero card">
+    <div class="hero-text">
+      <h2>Palitana Temple — A peaceful pilgrimage</h2>
+      <div class="meta">Location: Near the riverbanks • Best time: October — March</div>
+    </div>
+  </section>
+
+    <main class="grid">
+      <article>
+        <section id="about" class="card">
+          <div class="section-title">About Palitana Temple</div>
+          <p class="lead">Palitana Temple is an evocative place of worship known for its serene riverside setting, centuries-old stone carvings and a daily routine of rituals that draw visitors and devotees alike. The temple blends simple local architecture with ornate sculptural details — a gentle reminder of the region's living craft traditions.</p>
+
+          <h3 style="margin-top:12px">Quick facts</h3>
+          <ul class="info-list">
+            <li><strong>Established:</strong> Estimated several centuries ago (exact date varies in local histories)</li>
+            <li><strong>Deity:</strong> Main sanctum houses the presiding deity — locals celebrate two major festivals here</li>
+            <li><strong>Architecture:</strong> Stone base, carved pillars, an open courtyard used for community gatherings</li>
+            <li><strong>Entry:</strong> Free for all; special offerings and lamp-puja are available for a small donation</li>
+            <li><strong>Accessibility:</strong> Footpaths to the main complex; some steps inside — check visit notes below</li>
+          </ul>
+
+          <h3 style="margin-top:12px">History snapshot</h3>
+          <p class="lead">Local records and oral traditions indicate that the site of Drarka Temple has been a spiritual centre for generations. While there isn't a single definitive chronicle, the temple's stonework suggests multiple phases of construction and maintenance by local communities over time.</p>
+
+          <div style="margin-top:14px">
+            <div class="section-title">Temple gallery</div>
+            <div class="gallery" id="gallery">
+              <img src="palitana2.png" alt="Temple exterior">
+              <img src="palitana3.png" alt="Inner courtyard">
+              <img src="palitana4.png" alt="Stone carvings">
+              <img src="palitana5.png" alt="Festival lights">
+              <img src="palitana6.png" alt="Ritual lamp">
+              <img src="palitana7.png" alt="Sculptural detail">
+            </div>
+          </div>
+
+          <div style="margin-top:18px">
+            <div class="section-title">Visitor tips</div>
+            <ol style="margin-left:16px;color:#445;line-height:1.6">
+              <li>Dress modestly while entering the sanctum. Carry a shawl if needed during cooler months.</li>
+              <li>Photography is allowed in outer courtyards; ask permission before photographing rituals or priests.</li>
+              <li>Respect queuing for puja and avoid loud conversations inside the main hall.</li>
+              <li>Carry water and sunscreen on sunny days; some walking is required along the river path.</li>
+            </ol>
+          </div>
+
+        </section>
+
+        <section id="history" class="card" style="margin-top:18px">
+          <div class="section-title">Festivals & Rituals</div>
+          <p class="lead">Two main annual celebrations attract large crowds: a harvest thanksgiving festival (late autumn) and a lamp-lighting festival (winter). Daily rituals include morning aarti and a short evening procession when priests chant and devotees offer lamps.</p>
+
+          <div class="accordion" style="margin-top:12px">
+            <button type="button" aria-expanded="false">Daily Routine</button>
+            <div class="panel">
+              <p>06:00 — Morning bell & puja, 10:00 — Community offerings, 18:00 — Evening aarti, 20:00 — Lamp ritual.</p>
+            </div>
+            <button type="button" aria-expanded="false">Major Festivals</button>
+            <div class="panel">
+              <p>Festival dates follow the lunar calendar; expect local processions, special music and community feasts.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="stories" class="card" style="margin-top:18px">
+          <div class="section-title">Local stories</div>
+          <p class="lead">Elders tell stories of travellers finding refuge at the temple during storms and families making vows here for generations. These oral histories form a living cultural memory around the temple.</p>
+
+          <div class="comments" id="comments">
+            <div class="section-title">Visitor notes</div>
+            <div class="comment"><strong>Riya</strong><span style="font-size:13px;color:#667"> — Visited in March</span><div>Beautiful sunrise views and very peaceful early morning aarti.</div></div>
+            <div class="comment"><strong>Vikram</strong><span style="font-size:13px;color:#667"> — Visited in November</span><div>The festival was lively and food stalls had great local sweets.</div></div>
+          </div>
+
+          <form id="commentForm" style="margin-top:12px;display:flex;flex-direction:column;gap:8px">
+            <input type="text" id="visitorName" placeholder="Your name" style="padding:10px;border-radius:8px;border:1px solid #e3e7ef">
+            <textarea id="visitorNote" rows="3" placeholder="Share a short note (max 200 chars)" style="padding:10px;border-radius:8px;border:1px solid #e3e7ef"></textarea>
+            <div style="display:flex;gap:8px">
+              <button type="button" class="btn" onclick="submitComment()">Post</button>
+              <button type="reset" class="btn" style="background:#aaa">Clear</button>
+            </div>
+            <small id="commentMsg" style="color:#b33939;display:none"></small>
+          </form>
+        </section>
+      </article>
+
+      <aside>
+        <div class="card">
+          <h4 class="section-title">Plan your visit</h4>
+          <ul class="info-list">
+            <li><strong>Nearest town:</strong> Drarka Bazaar — 6 km</li>
+            <li><strong>Transport:</strong> Local buses & auto-rickshaws to temple entrance</li>
+            <li><strong>Parking:</strong> Small parking area; busy on festival days</li>
+            <li><strong>Restrooms:</strong> Available near the entrance (basic facilities)</li>
+          </ul>
+
+          <div style="margin-top:12px">
+            <div class="section-title">Opening hours</div>
+            <div class="ticket-grid">
+              <div class="ticket"><div><strong>6:00</strong></div><small>Morning</small></div>
+              <div class="ticket"><div><strong>12:00</strong></div><small>Midday</small></div>
+              <div class="ticket"><div><strong>18:00</strong></div><small>Evening</small></div>
+            </div>
+            <div style="margin-top:10px">
+              <button class="btn" onclick="alert('Thanks! Use the contact section below or call the trust office while planning.')">Ask for guide</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <div class="section-title">Location & map</div>
+          <div class="map" id="map">Map placeholder — replace with an embedded Google Map iframe</div>
+          <p style="font-size:13px;color:#556;margin-top:10px">Coordinates (approx): 20.1234, 73.5678</p>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <div class="section-title">Contact & Donations</div>
+          <p style="color:#445">Trust Office: +91 98765 43210<br>Email: info@drarkatemple.example</p>
+          <div style="margin-top:10px">
+            <button class="btn" onclick="openDonate()">Donate</button>
+          </div>
+        </div>
+
+        <!-- TensorFlow.js + COCO-SSD -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+</head>
+<body>
+  <!-- Camera / QR Scanner Section -->
+  <div class="card" id="cameraCard">
+    <h2>Live Temple Camera Access</h2>
+    <p style="font-size:13px;color:#556;margin-bottom:6px">
+      Use your device camera to count people inside temple:
+    </p>
+    <video id="camera" autoplay muted playsinline></video>
+    <canvas id="overlay"></canvas>
+    <div>
+      <button class="btn" onclick="startCamera()">Start Camera</button>
+      <button class="btn" style="background:#ff6347" onclick="stopCamera()">Stop Camera</button>
+    </div>
+    <h3 id="countDisplay">People Count: 0</h3>
+  </div>
+        
+      </aside>
+    </main>
+
+    <footer>
+      <p>© Shree Palitana Trust — Eternal Shrine of Lord Shiva</p>
+    </footer>
+  </div>
+
+  <script>
+    // Accordion toggle
+    function togglePanel(btn){
+      const panel = btn.nextElementSibling;
+      panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Map click
+    document.getElementById('map').addEventListener('click', () => {
+      window.open('https://www.google.com/maps/search/?api=1&query=20.8880,70.4012', '_blank');
+    });
+
+    // Donation prompt
+    function openDonate(){
+      const amount = prompt('Enter donation amount in ₹ (example: 500)');
+      if (!amount) return alert('Donation cancelled.');
+      const n = Number(amount.replace(/[^0-9.]/g,''));
+      if (!n || n <= 0) return alert('Enter a valid amount.');
+      alert('🙏 Thank you! You pledged ₹' + n + '. For official donations, please contact Shree Somnath Trust.');
+    }
+
+    // Comments system
+    function addComment(){
+      const text = document.getElementById('commentText').value.trim();
+      if(!text) return alert("Please write something.");
+      const div = document.createElement('div');
+      div.className = 'comment';
+      div.innerHTML = '<strong>Visitor</strong><p>'+text+'</p>';
+      document.getElementById('commentList').appendChild(div);
+      document.getElementById('commentText').value = '';
+    }
+
+    let video = document.getElementById("camera");
+    let canvas = document.getElementById("overlay");
+    let ctx = canvas.getContext("2d");
+    let stream = null;
+    let model = null;
+
+    // Load COCO-SSD model
+    cocoSsd.load().then(loadedModel => {
+      model = loadedModel;
+      console.log("Model loaded!");
+    });
+
+    async function startCamera() {
+      stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      video.srcObject = stream;
+
+      video.onloadedmetadata = () => {
+        video.play();
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        detectPeople();
+      };
+    }
+
+    function stopCamera() {
+      if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+      }
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      document.getElementById("countDisplay").innerText = "People Count: 0";
+    }
+
+    async function detectPeople() {
+      if (!model) return;
+
+      const predictions = await model.detect(video);
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      let personCount = 0;
+
+      predictions.forEach(prediction => {
+        if (prediction.class === "person" && prediction.score > 0.6) {
+          personCount++;
+          let [x, y, width, height] = prediction.bbox;
+          ctx.strokeStyle = "lime";
+          ctx.lineWidth = 2;
+          ctx.strokeRect(x, y, width, height);
+          ctx.fillStyle = "lime";
+          ctx.fillText("Person", x, y > 10 ? y - 5 : y + 15);
+        }
+      });
+
+      document.getElementById("countDisplay").innerText = "People Count: " + personCount;
+
+      requestAnimationFrame(detectPeople);
+    }
+
+
+  </script>
+</body>
+</html>

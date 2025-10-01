@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Job Chatboard</title>
+<style>
+  body {font-family:Arial,sans-serif;background:#f0f0f0;margin:0;padding:0;display:flex;justify-content:center;align-items:center;height:100vh;}
+  .chat-container {width:350px;height:450px;background:white;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.2);display:flex;flex-direction:column;overflow:hidden;}
+  .chat-header {background:#0ea5a4;color:white;padding:12px;text-align:center;font-weight:bold;}
+  .chat-messages {flex:1;padding:12px;overflow:auto;display:flex;flex-direction:column;gap:8px;}
+  .msg {max-width:75%;padding:8px 12px;border-radius:12px;}
+  .user {align-self:flex-end;background:#0ea5a4;color:white;}
+  .bot {align-self:flex-start;background:#e0e0e0;color:#000;border:1px solid #cfcfcf;}
+  .chat-input {display:flex;padding:8px;border-top:1px solid #ccc;}
+  .chat-input input {flex:1;padding:8px;border-radius:6px;border:1px solid #ccc;}
+  .chat-input button {margin-left:6px;padding:8px 12px;border:none;border-radius:6px;background:#0ea5a4;color:white;cursor:pointer;}
+</style>
+</head>
+<body>
+
+<div class="chat-container">
+  <div class="chat-header">Job Finder Chat</div>
+  <div class="chat-messages" id="messages"></div>
+  <div class="chat-input">
+    <input type="text" id="input" placeholder="Ask about jobs..."/>
+    <button id="send">Send</button>
+  </div>
+</div>
+
+<script>
+const messages = document.getElementById('messages');
+const input = document.getElementById('input');
+const send = document.getElementById('send');
+
+// Sample job database
+const jobs = [
+  {title:'Frontend Developer', company:'ABC Tech', skills:['html','css','javascript','react']},
+  {title:'Backend Developer', company:'XYZ Soft', skills:['node','express','database']},
+  {title:'Data Scientist', company:'DataCorp', skills:['python','ml','ai','data']},
+  {title:'AI Engineer', company:'FutureAI', skills:['python','ml','ai','deep learning']},
+  {title:'Full Stack Developer', company:'Techies', skills:['html','css','javascript','node','react']}
+];
+
+// append helper
+function append(text, cls='bot'){
+  const d = document.createElement('div');
+  d.className = 'msg '+cls;
+  d.textContent = text;
+  messages.appendChild(d);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+// function to find related jobs
+function findJobs(query){
+  const q = query.toLowerCase();
+  const related = jobs.filter(job=>job.title.toLowerCase().includes(q) || job.skills.some(s=>q.includes(s)));
+  if(related.length ===0) return ['No related jobs found 😢'];
+  return related.map(j=>`${j.title} at ${j.company} (Skills: ${j.skills.join(', ')})`);
+}
+
+function sendMessage(){
+  const text = input.value.trim();
+  if(!text) return;
+  append(text,'user');
+  input.value='';
+
+  // bot replies
+  const replies = findJobs(text);
+  replies.forEach(r=>append(r,'bot'));
+}
+
+send.addEventListener('click',sendMessage);
+input.addEventListener('keypress',e=>{if(e.key==='Enter') sendMessage();});
+</script>
+
+</body>
+</html>
