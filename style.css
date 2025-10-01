@@ -31,6 +31,17 @@ background-color: #000000; /* Black background */
 
 }
 
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item {
+  flex: 1 1 300px; /* 300px tak rahega, baaki adjust hoga */
+  margin: 10px;
+  background: lightblue;
+}
+
 /* Logo Image */
 .navbar .logo-img {
     height: 50px;       /* Navbar height ke hisab se adjust */
@@ -46,6 +57,12 @@ background-color: #000000; /* Black background */
     object-fit: cover;   /* Image fit ho jaye aur distort na ho */
     border-radius: 30%;  /* Square -> Circle */
     border: 2px solid #f9d342; /* Optional: Circle ke around border */
+}
+
+@media (max-width: 768px) {
+  .menu {
+    flex-direction: column;
+  }
 }
 
 
@@ -546,3 +563,4 @@ footer {
   color: #b91c1c;        /* dark red text */
   border: 1px solid #fca5a5;
 }
+
